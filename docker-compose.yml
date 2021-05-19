@@ -18,7 +18,7 @@ services:
       - influxdb
 
   influxdb:
-    image: influxdb
+    image: influxdb:1.8
     ports:
       - 8086:8086
     volumes:
@@ -39,23 +39,23 @@ services:
     depends_on:
       - influxdb
 
-  chronograf:
-    image: chronograf
-    ports:
-      - 8888:8888
-    volumes:
-      - chronograf_data:/var/lib/chronograf
-    depends_on:
-      - influxdb
-    environment:
-      - INFLUXDB_URL=http://influxdb:8086
-      - INFLUXDB_USERNAME=${INFLUXDB_USERNAME}
-      - INFLUXDB_PASSWORD=${INFLUXDB_PASSWORD}
+  #chronograf:
+   # image: chronograf
+    #ports:
+    #  - 8888:8888
+    #volumes:
+    #  - chronograf_data:/var/lib/chronograf
+    #depends_on:
+    #  - influxdb
+    #environment:
+    #  - INFLUXDB_URL=http://influxdb:8086
+    #  - INFLUXDB_USERNAME=${INFLUXDB_USERNAME}
+    #  - INFLUXDB_PASSWORD=${INFLUXDB_PASSWORD}
 
 volumes:
   mosquitto_data:
   mosquitto_log:
-  node_red_user_data:
   influxdb_data:
   grafana_data:
-  chronograf_data:
+#  node_red_user_data:
+#  chronograf_data:
