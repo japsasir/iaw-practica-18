@@ -41,19 +41,32 @@ Con el script de bash adjunto, 'dockerinstall.sh' instalamos los servicios docke
 ### Extrayendo telegraf.conf
 Para el correcto funcionamiento de la práctica, es necesario extraer y modificar un archivo de configuración de telegraf. Para ello usaremos el siguiente comando:
 
-´docker run --rm telegraf telegraf config > telegraf.conf´
+`docker run --rm telegraf telegraf config > telegraf.conf`
 
 Los cambios realizados estarán señalados en un archivo de configuración ya editado en el propio repositorio. Usaremos control+f para buscar 'cambio'
 
 
-###
+### Prueba del broker MQTT y el cliente MQTT
+#### Broker
+Con este comando simularemos las lecturas recogidas por los sensores.
 
-###
+`docker run --init -it --rm efrecon/mqtt-client pub -h $DireccionIP -p 1883 -t "iescelia/aula22/co2" -m 30`
 
-###
-###
+- La imagen docker usa el cliente MQTT (mosquitto_pub)
+- El comando 'pub' publica un mensaje en el broker
+- '-h' indica el host (La IP) del broker MQTT
+- '-p' apunta al puerto 1883
+- '-t' Indicamos el topic. En este ejemplo "iescelia/aula22/co2"  
 
+#### Cliente
+Con este otro comando podemos suscribirnos a los topics que se publiquen en cada aula de iescelia
 
+`docker run --init -it --rm efrecon/mqtt-client sub -h $DireccionIP -t "iescelia/#"`
+
+- La imagen docker usa el cliente MQTT (mosquitto_pub)
+- El comando 'sub' se suscribe a un topic
+- '-h' indica el host (La IP) del broker MQT
+- '-t' Indicamos el topic al que suscribirnos. '#' es una wildcard, así que coge cualquier topic. Podríamos suscribirnos a uno concreto.
 
 **Información de ampliación**
 ------------
@@ -61,15 +74,17 @@ Los cambios realizados estarán señalados en un archivo de configuración ya ed
 
 **Archivos en el repositorio**
 ------------
-1. **README**               Documentación.
+1. **README**          				  Documentación.
+2. **dockerinstall.sh**               Instalación de docker y docker-compose.
+3. **docker-compose.yml**             Organizacion de contenedores docker.
+4. **.env**							  Entorno para docker-compose.
       
 **Referencias**
 ------------
 - Guía original para la práctica.
 http://josejuansanchez.org/iot-dashboard/
-- 
 
 **Editor Markdown**
 ------------
-- Markdown editor. Alternativamente, investigar atajos de teclado como Ctrl+B= bold (negrita) 
+- Markdown editor.
 https://markdown-editor.github.io/
