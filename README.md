@@ -68,9 +68,21 @@ Con este otro comando podemos suscribirnos a los topics que se publiquen en cada
 - '-h' indica el host (La IP) del broker MQT
 - '-t' Indicamos el topic al que suscribirnos. '#' es una wildcard, así que coge cualquier topic. Podríamos suscribirnos a uno concreto.
 
-**Información de ampliación**
+### Dashboard
+
+Nos dirigimos ahora a `$DireccionIP:3000` en nuestro navegador para entrar al panel Dashboard. Las credenciales por defecto son "admin/admin"
+En el menú lateral izquierdo nos dirigimos a "Dashboards>Manage"
+
+![Panel](https://i.imgur.com/IV7Zws1.png)
+Deberíamos ver el panel y las lecturas.
+
+Si introducimos algunos valores extra con el comando anterior podremos ver como se genera mínima, media y máxima así como una representación visual a la derecha.
+`docker run --init -it --rm efrecon/mqtt-client pub -h $DireccionIP -p 1883 -t "iescelia/aula22/co2" -m $numero`
+
+**Otros**
 ------------
-- 
+- Diversos errores de recepción de datos estaban relacionados con el archivo telegraf.conf y la indentación empleada.
+- Ha sido necesario especificar la versión 1.8 de InfluxDB en el archivo docker-compose.yml para poder hacer la comprobación de la base de datos. (Agradecimientos a @arr588)
 
 **Archivos en el repositorio**
 ------------

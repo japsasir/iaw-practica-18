@@ -39,6 +39,7 @@ services:
     depends_on:
       - influxdb
 
+  # No es necesario para la práctica
   #chronograf:
    # image: chronograf
     #ports:
