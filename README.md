@@ -20,10 +20,20 @@ Para realizar el despliegue de los servicios de MQTT, Telegraf, InfluxDB y Grafa
 
 ### Creando una instancia de AWS
 Lanzaremos una instancia AWS de Ubuntu Server 20.04 con, al menos, 4 GB de memoria RAM. El grupo de seguridad asignado deberá tener abiertos los siguientes puertos:
+- 22 (SSH)
 - 80
 - 8086 (InfluxDB)
 - 3000 (Grafana)
 - 1883 (Broker MQTT)
+
+![Tipo de instancia.](https://i.imgur.com/GR58RBO.png)
+Tipo de instancia.
+
+![Tier medium.](https://i.imgur.com/1bhRwgH.png)
+Tier medium.
+
+![Grupo de seguridad.](https://i.imgur.com/Pp8mjn7.png)
+Grupo de seguridad.
 
 ### Instalando docker y docker compose.
 Con el script de bash adjunto, 'dockerinstall.sh' instalamos los servicios docker y docker-compose.
