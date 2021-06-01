@@ -50,7 +50,7 @@ Los cambios realizados estarán señalados en un archivo de configuración ya ed
 #### Broker
 Con este comando simularemos las lecturas recogidas por los sensores.
 
-`docker run --init -it --rm efrecon/mqtt-client pub -h $DireccionIP -p 1883 -t "iescelia/aula22/co2" -m 30`
+`docker run -it --rm efrecon/mqtt-client pub -h $DireccionIP -p 1883 -t "iescelia/aula22/co2" -m 30`
 
 - La imagen docker usa el cliente MQTT (mosquitto_pub)
 - El comando 'pub' publica un mensaje en el broker
@@ -59,9 +59,10 @@ Con este comando simularemos las lecturas recogidas por los sensores.
 - '-t' Indicamos el topic. En este ejemplo "iescelia/aula22/co2"  
 
 #### Cliente
-Con este otro comando podemos suscribirnos a los topics que se publiquen en cada aula de iescelia
+Con este otro comando podemos suscribirnos a los topics que se publiquen en cada aula de iescelia.
+No se usa en esta práctica, pero el comando sería el siguiente.
 
-`docker run --init -it --rm efrecon/mqtt-client sub -h $DireccionIP -t "iescelia/#"`
+`docker run -it --rm efrecon/mqtt-client sub -h $DireccionIP -t "iescelia/#"`
 
 - La imagen docker usa el cliente MQTT (mosquitto_pub)
 - El comando 'sub' se suscribe a un topic
